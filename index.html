@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" referrerpolicy="no-referrer" />
     <style>
         :root {
             --color-primary-start: #ea580c;
@@ -758,5 +758,340 @@
             });
         });
     </script>
-</body>
+
+<script>
+(function() {
+  const fallbackImages = ["1522071820080-37f2cb85c41d","1497366216548-37526070297c","1556761175-4bda37b9dd37","1556761175-b4136fa58510","1552664736-d46ed1db83d9","1556761175-5973dc0f32e7","1556761175-5973dc0f32e8","1556761175-5973dc0f32e9","1556761175-5973dc0f32ea","1556761175-5973dc0f32eb"];
+  let fallbackIndex = 0;
+  
+  function getFallbackImageUrl() {
+    if (fallbackIndex >= fallbackImages.length) {
+      fallbackIndex = 0;
+    }
+    const imageId = fallbackImages[fallbackIndex];
+    fallbackIndex++;
+    return 'https://images.unsplash.com/' + imageId + '?w=800&h=600&fit=crop';
+  }
+  
+  function handleImageError(img) {
+    const originalSrc = img.getAttribute('data-original-src') || img.src;
+    
+    if (!img.getAttribute('data-original-src')) {
+      img.setAttribute('data-original-src', originalSrc);
+      img.setAttribute('data-fallback-attempts', '0');
+    }
+    
+    const attempts = parseInt(img.getAttribute('data-fallback-attempts') || '0');
+    
+    if (attempts < 5) {
+      img.setAttribute('data-fallback-attempts', (attempts + 1).toString());
+      img.src = getFallbackImageUrl();
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+      if (!img.onerror) {
+        img.onerror = function() { handleImageError(img); };
+      }
+    });
+  });
+  
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          if (node.tagName === 'IMG') {
+            node.onerror = function() { handleImageError(node); };
+          }
+          const images = node.querySelectorAll && node.querySelectorAll('img');
+          if (images) {
+            images.forEach(function(img) {
+              if (!img.onerror) {
+                img.onerror = function() { handleImageError(img); };
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
+<script>
+(function() {
+  const fallbackImages = ["1522071820080-37f2cb85c41d","1497366216548-37526070297c","1556761175-4bda37b9dd37","1556761175-b4136fa58510","1552664736-d46ed1db83d9","1556761175-5973dc0f32e7","1556761175-5973dc0f32e8","1556761175-5973dc0f32e9","1556761175-5973dc0f32ea","1556761175-5973dc0f32eb"];
+  let fallbackIndex = 0;
+  
+  function getFallbackImageUrl() {
+    if (fallbackIndex >= fallbackImages.length) {
+      fallbackIndex = 0;
+    }
+    const imageId = fallbackImages[fallbackIndex];
+    fallbackIndex++;
+    return 'https://images.unsplash.com/' + imageId + '?w=800&h=600&fit=crop';
+  }
+  
+  function handleImageError(img) {
+    const originalSrc = img.getAttribute('data-original-src') || img.src;
+    
+    if (!img.getAttribute('data-original-src')) {
+      img.setAttribute('data-original-src', originalSrc);
+      img.setAttribute('data-fallback-attempts', '0');
+    }
+    
+    const attempts = parseInt(img.getAttribute('data-fallback-attempts') || '0');
+    
+    if (attempts < 5) {
+      img.setAttribute('data-fallback-attempts', (attempts + 1).toString());
+      img.src = getFallbackImageUrl();
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+      if (!img.onerror) {
+        img.onerror = function() { handleImageError(img); };
+      }
+    });
+  });
+  
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          if (node.tagName === 'IMG') {
+            node.onerror = function() { handleImageError(node); };
+          }
+          const images = node.querySelectorAll && node.querySelectorAll('img');
+          if (images) {
+            images.forEach(function(img) {
+              if (!img.onerror) {
+                img.onerror = function() { handleImageError(img); };
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
+<script>
+(function() {
+  const fallbackImages = ["1522071820080-37f2cb85c41d","1497366216548-37526070297c","1556761175-4bda37b9dd37","1556761175-b4136fa58510","1552664736-d46ed1db83d9","1556761175-5973dc0f32e7","1556761175-5973dc0f32e8","1556761175-5973dc0f32e9","1556761175-5973dc0f32ea","1556761175-5973dc0f32eb"];
+  let fallbackIndex = 0;
+  
+  function getFallbackImageUrl() {
+    if (fallbackIndex >= fallbackImages.length) {
+      fallbackIndex = 0;
+    }
+    const imageId = fallbackImages[fallbackIndex];
+    fallbackIndex++;
+    return 'https://images.unsplash.com/' + imageId + '?w=800&h=600&fit=crop';
+  }
+  
+  function handleImageError(img) {
+    const originalSrc = img.getAttribute('data-original-src') || img.src;
+    
+    if (!img.getAttribute('data-original-src')) {
+      img.setAttribute('data-original-src', originalSrc);
+      img.setAttribute('data-fallback-attempts', '0');
+    }
+    
+    const attempts = parseInt(img.getAttribute('data-fallback-attempts') || '0');
+    
+    if (attempts < 5) {
+      img.setAttribute('data-fallback-attempts', (attempts + 1).toString());
+      img.src = getFallbackImageUrl();
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+      if (!img.onerror) {
+        img.onerror = function() { handleImageError(img); };
+      }
+    });
+  });
+  
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          if (node.tagName === 'IMG') {
+            node.onerror = function() { handleImageError(node); };
+          }
+          const images = node.querySelectorAll && node.querySelectorAll('img');
+          if (images) {
+            images.forEach(function(img) {
+              if (!img.onerror) {
+                img.onerror = function() { handleImageError(img); };
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
+<script>
+(function() {
+  const fallbackImages = ["1522071820080-37f2cb85c41d","1497366216548-37526070297c","1556761175-4bda37b9dd37","1556761175-b4136fa58510","1552664736-d46ed1db83d9","1556761175-5973dc0f32e7","1556761175-5973dc0f32e8","1556761175-5973dc0f32e9","1556761175-5973dc0f32ea","1556761175-5973dc0f32eb"];
+  let fallbackIndex = 0;
+  
+  function getFallbackImageUrl() {
+    if (fallbackIndex >= fallbackImages.length) {
+      fallbackIndex = 0;
+    }
+    const imageId = fallbackImages[fallbackIndex];
+    fallbackIndex++;
+    return 'https://images.unsplash.com/' + imageId + '?w=800&h=600&fit=crop';
+  }
+  
+  function handleImageError(img) {
+    const originalSrc = img.getAttribute('data-original-src') || img.src;
+    
+    if (!img.getAttribute('data-original-src')) {
+      img.setAttribute('data-original-src', originalSrc);
+      img.setAttribute('data-fallback-attempts', '0');
+    }
+    
+    const attempts = parseInt(img.getAttribute('data-fallback-attempts') || '0');
+    
+    if (attempts < 5) {
+      img.setAttribute('data-fallback-attempts', (attempts + 1).toString());
+      img.src = getFallbackImageUrl();
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+      if (!img.onerror) {
+        img.onerror = function() { handleImageError(img); };
+      }
+    });
+  });
+  
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          if (node.tagName === 'IMG') {
+            node.onerror = function() { handleImageError(node); };
+          }
+          const images = node.querySelectorAll && node.querySelectorAll('img');
+          if (images) {
+            images.forEach(function(img) {
+              if (!img.onerror) {
+                img.onerror = function() { handleImageError(img); };
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script>
+<script>
+(function() {
+  const fallbackImages = ["1522071820080-37f2cb85c41d","1497366216548-37526070297c","1556761175-4bda37b9dd37","1556761175-b4136fa58510","1552664736-d46ed1db83d9","1556761175-5973dc0f32e7","1556761175-5973dc0f32e8","1556761175-5973dc0f32e9","1556761175-5973dc0f32ea","1556761175-5973dc0f32eb"];
+  let fallbackIndex = 0;
+  
+  function getFallbackImageUrl() {
+    if (fallbackIndex >= fallbackImages.length) {
+      fallbackIndex = 0;
+    }
+    const imageId = fallbackImages[fallbackIndex];
+    fallbackIndex++;
+    return 'https://images.unsplash.com/' + imageId + '?w=800&h=600&fit=crop';
+  }
+  
+  function handleImageError(img) {
+    const originalSrc = img.getAttribute('data-original-src') || img.src;
+    
+    if (!img.getAttribute('data-original-src')) {
+      img.setAttribute('data-original-src', originalSrc);
+      img.setAttribute('data-fallback-attempts', '0');
+    }
+    
+    const attempts = parseInt(img.getAttribute('data-fallback-attempts') || '0');
+    
+    if (attempts < 5) {
+      img.setAttribute('data-fallback-attempts', (attempts + 1).toString());
+      img.src = getFallbackImageUrl();
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(function(img) {
+      if (!img.onerror) {
+        img.onerror = function() { handleImageError(img); };
+      }
+    });
+  });
+  
+  const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+      mutation.addedNodes.forEach(function(node) {
+        if (node.nodeType === 1) {
+          if (node.tagName === 'IMG') {
+            node.onerror = function() { handleImageError(node); };
+          }
+          const images = node.querySelectorAll && node.querySelectorAll('img');
+          if (images) {
+            images.forEach(function(img) {
+              if (!img.onerror) {
+                img.onerror = function() { handleImageError(img); };
+              }
+            });
+          }
+        }
+      });
+    });
+  });
+  
+  observer.observe(document.body || document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+})();
+</script></body>
 </html>
