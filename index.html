@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corazón de Agave - Auténtica Cocina Mexicana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        :root {
+            --color-primary-start: #ea580c;
+            --color-primary-end: #f97316;
+            --color-secondary: #0d9488;
+            --color-text: #292524;
+            --color-text-light: #78716c;
+            --color-bg: #fffaf0;
+            --color-surface: #ffffff;
+            --color-dark: #1c1917;
+            --font-family-base: 'Inter', sans-serif;
+            --font-size-base: 16px;
+            --spacing-unit: 8px;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --transition-speed: 0.3s;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 calc(var(--spacing-unit) * 3);
+        }
+
+        section {
+            padding: clamp(60px, 10vh, 100px) 0;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            background: linear-gradient(45deg, var(--color-primary-start), var(--color-primary-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--color-text);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        p {
+            max-width: 65ch;
+            color: var(--color-text-light);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 4);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, var(--color-primary-start), var(--color-primary-end));
+            color: white;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-text-light);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-surface);
+            border-color: var(--color-text);
+            transform: translateY(-3px);
+        }
+        
+        /* Header & Navigation */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: calc(var(--spacing-unit) * 2) 0;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .main-header.scrolled {
+            background-color: rgba(255, 250, 240, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+            padding: var(--spacing-unit) 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            text-decoration: none;
+        }
+        .nav-logo .icon {
+            color: var(--color-primary-end);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: calc(var(--spacing-unit) * 4);
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            position: relative;
+            padding: var(--spacing-unit) 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary-end);
+            transition: width var(--transition-speed) ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            color: white;
+            padding: 0 calc(var(--spacing-unit) * 3);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&h=1080&fit=crop') no-repeat center center/cover;
+            filter: brightness(0.4);
+            z-index: -1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            -webkit-text-fill-color: white; /* Override gradient for hero */
+            background: none;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: calc(var(--spacing-unit) * 4);
+            max-width: 60ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta {
+            display: flex;
+            justify-content: center;
+            gap: calc(var(--spacing-unit) * 2);
+            flex-wrap: wrap;
+        }
+        
+        .hero-cta .btn-primary {
+            color: white;
+        }
+
+        .hero-cta .btn-secondary {
+            color: white;
+            border-color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .hero-cta .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+        }
+
+        .feature-card {
+            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--color-primary-end);
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            display: inline-block;
+            background: linear-gradient(45deg, var(--color-primary-start), var(--color-primary-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .feature-card p {
+            margin: 0 auto;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: calc(var(--spacing-unit) * 8);
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .about-text h3 {
+            font-size: 1rem;
+            color: var(--color-primary-end);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+
+        /* Testimonials Section */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: calc(var(--spacing-unit) * 4);
+        }
+
+        .testimonial-card {
+            background-color: var(--color-surface);
+            padding: calc(var(--spacing-unit) * 4);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid var(--color-primary-end);
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            color: var(--color-text);
+            flex-grow: 1;
+            margin-bottom: calc(var(--spacing-unit) * 3);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: calc(var(--spacing-unit) * 2);
+            margin-top: auto;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .author-info strong {
+            display: block;
+            color: var(--color-text);
+        }
+        .author-info span {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+        
+        .testimonial-card .fa-quote-left {
+            font-size: 1.5rem;
+            color: var(--color-primary-start);
+            opacity: 0.5;
+            margin-bottom: var(--spacing-unit);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(45deg, var(--color-primary-start), var(--color-primary-end));
+            color: white;
+            padding: calc(var(--spacing-unit) * 10) calc(var(--spacing-unit) * 3);
+            text-align: center;
+            border-radius: var(--radius-lg);
+            margin: 0 calc(var(--spacing-unit) * 2);
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+        }
+        
+        .cta-section p {
+            color: rgba(255,255,255,0.9);
+            max-width: 60ch;
+            margin: 0 auto calc(var(--spacing-unit) * 4) auto;
+        }
+        
+        .cta-section .btn {
+            background: white;
+            color: var(--color-primary-end);
+            font-size: 1.1rem;
+            padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 5);
+        }
+        
+        .cta-section .btn:hover {
+            background: var(--color-bg);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--color-dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: calc(var(--spacing-unit) * 8) 0 calc(var(--spacing-unit) * 3) 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: calc(var(--spacing-unit) * 5);
+            margin-bottom: calc(var(--spacing-unit) * 6);
+        }
+        
+        .footer-column h4 {
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-weight: 600;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: var(--spacing-unit);
+        }
+        
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            font-size: 1.5rem;
+            margin-right: calc(var(--spacing-unit) * 2);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: calc(var(--spacing-unit) * 3);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                margin-bottom: calc(var(--spacing-unit) * 4);
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--color-bg);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: calc(var(--spacing-unit) * 5);
+                transition: right var(--transition-speed) ease-in-out;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .hero h1 {
+                font-size: clamp(2.2rem, 10vw, 3.5rem);
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .footer-grid {
+                text-align: center;
+            }
+            .social-icons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header" id="main-header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="nav-logo"><i class="fas fa-pepper-hot icon"></i> Corazón de Agave</a>
+                <ul class="nav-links" id="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nuestra Historia</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#" class="btn btn-primary mobile-only">Reservar</a></li>
+                </ul>
+                <a href="#" class="btn btn-primary desktop-only">Reservar Mesa</a>
+                <button class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-content fade-in">
+                <h1>El Alma de México en Cada Bocado</h1>
+                <p>Descubre la auténtica cocina mexicana, preparada con pasión y los ingredientes más frescos de la región. Una experiencia culinaria que te transportará directamente al corazón de México.</p>
+                <div class="hero-cta">
+                    <a href="#" class="btn btn-primary">Ver Nuestro Menú</a>
+                    <a href="#" class="btn btn-secondary">Hacer una Reserva</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="features-section">
+            <div class="container">
+                <h2 class="fade-in">¿Por Qué Elegirnos?</h2>
+                <div class="features-grid">
+                    <div class="feature-card fade-in" style="transition-delay: 100ms;">
+                        <span class="feature-icon"><i class="fas fa-leaf"></i></span>
+                        <h3>Ingredientes de Origen</h3>
+                        <p>Seleccionamos los mejores productos locales para garantizar frescura y calidad en cada platillo.</p>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 200ms;">
+                        <span class="feature-icon"><i class="fas fa-book-open"></i></span>
+                        <h3>Recetas de Familia</h3>
+                        <p>Nuestra cocina se basa en recetas tradicionales pasadas de generación en generación, con un toque moderno.</p>
+                    </div>
+                    <div class="feature-card fade-in" style="transition-delay: 300ms;">
+                        <span class="feature-icon"><i class="fas fa-users"></i></span>
+                        <h3>Ambiente Inolvidable</h3>
+                        <p>Un espacio diseñado para que te sientas como en casa, vibrante y acogedor, perfecto para cualquier ocasión.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nosotros" class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-image-wrapper fade-in">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&h=600&fit=crop" alt="Interior moderno y acogedor del restaurante" class="about-image">
+                    </div>
+                    <div class="about-text fade-in" style="transition-delay: 200ms;">
+                        <h3>NUESTRA HISTORIA</h3>
+                        <h2>Pasión por la Tradición</h2>
+                        <p>Corazón de Agave nació del sueño de la familia Rojas de compartir el auténtico sabor de su tierra natal. Desde nuestra apertura, hemos fusionado las recetas de la abuela con técnicas culinarias contemporáneas para crear una experiencia única.</p>
+                        <p>Nuestro espacio está diseñado para ser más que un restaurante; es un punto de encuentro para celebrar la vida, la amistad y la rica cultura mexicana. Cada detalle, desde la decoración hasta la música, está pensado para transportarte.</p>
+                        <a href="#" class="btn btn-primary">Conoce Más</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonios" class="testimonials-section">
+            <div class="container">
+                <h2 class="fade-in">Lo Que Dicen Nuestros Clientes</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in" style="transition-delay: 100ms;">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"¡La mejor comida mexicana que he probado fuera de México! El ambiente es increíble y el servicio de primera. Los tacos al pastor son una obra de arte."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" alt="Foto de Ana Pérez">
+                            <div class="author-info">
+                                <strong>Ana Pérez</strong>
+                                <span>Visitante Frecuente</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in" style="transition-delay: 200ms;">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"Un lugar perfecto para una cena especial. Cuidan cada detalle y los sabores son espectaculares. La coctelería con mezcal es simplemente sublime."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=400&fit=crop" alt="Foto de Carlos Gómez">
+                            <div class="author-info">
+                                <strong>Carlos Gómez</strong>
+                                <span>Crítico Gastronómico</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card fade-in" style="transition-delay: 300ms;">
+                        <i class="fas fa-quote-left"></i>
+                        <p>"El ambiente te transporta. Es el sitio ideal para una reunión de negocios o una cena romántica. ¡Totalmente recomendado! Volveré una y otra vez."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop" alt="Foto de Sofía Rodríguez">
+                            <div class="author-info">
+                                <strong>Sofía Rodríguez</strong>
+                                <span>Empresaria</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container fade-in">
+                <div class="cta-section">
+                    <h2>¿Listo para una Experiencia Única?</h2>
+                    <p>Haz tu reserva hoy y déjanos transportarte al corazón de México con nuestros sabores auténticos y nuestro ambiente vibrante.</p>
+                    <a href="#" class="btn">Reservar Ahora</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>Corazón de Agave</h4>
+                    <p>El auténtico sabor de México, servido con pasión y tradición en cada platillo.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Nuestra Historia</a></li>
+                        <li><a href="#">Menú</a></li>
+                        <li><a href="#">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. del Sabor 123, México</li>
+                        <li><i class="fas fa-phone"></i> +52 55 1234 5678</li>
+                        <li><i class="fas fa-envelope"></i> hola@corazonagave.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Síguenos</h4>
+                    <div class="social-icons">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Corazón de Agave. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sticky Header
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Hamburger Menu
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+            const navLinkItems = navLinks.querySelectorAll('a');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = hamburger.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Close menu when a link is clicked
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        const icon = hamburger.querySelector('i');
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+
+            // Fade-in on Scroll Animation
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.2,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
